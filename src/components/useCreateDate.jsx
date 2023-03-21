@@ -39,6 +39,7 @@ const useCreateDate = () => {
       month = "December";
       break;
   }
+ 
   const getFullMinutes = () => {
     const minutes = dateObj.getMinutes();
     if (minutes < 10) {
@@ -47,8 +48,14 @@ const useCreateDate = () => {
     return minutes;
     };
 
-  const date = `${month} ${dateObj.getDate()}, ${dateObj.getFullYear()} [${dateObj.getHours()}:${getFullMinutes()}]`;
-  return date;
+  const date = ()=>{
+    if(dateObj.getHours()>12){
+      return `${dateObj.getDate()} ${month} ${dateObj.getFullYear()} - ${dateObj.getHours()-12}:${getFullMinutes()} PM`;
+    }
+    return `${dateObj.getDate()} ${month} ${dateObj.getFullYear()} - ${dateObj.getHours()}:${getFullMinutes()} AM`;
+  }
+  const finalDate = date();
+  return finalDate;
 };
 
 export default useCreateDate;

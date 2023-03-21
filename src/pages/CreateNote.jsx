@@ -18,11 +18,17 @@ function CreateNote({setNotes}) {
         date,
       }
       setNotes((prevNotes) => [...prevNotes, note]);
-      console.log(note);
+
       navigate("/");
+      setTitle("");
+      setDetails("");
     }
-    setTitle("");
-    setDetails("");
+    if(!title){
+      alert("Title is required");
+    }
+    if(!details){
+      alert("Details is required");
+    }
 
   };
   useEffect(()=>{
@@ -36,7 +42,7 @@ function CreateNote({setNotes}) {
         </Link>
         <button className="btn lg primary" onClick={handleSubmit}>Save</button>
       </header>
-      <form className="create-note__form" onSubmit={handleSubmit}>
+      <form className="create-note__form">
         <input
           type="text"
           placeholder="Title"
