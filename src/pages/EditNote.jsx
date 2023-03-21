@@ -37,7 +37,9 @@ function EditNote({ notes, setNotes }) {
     <section>
       <header className="create-note__header">
         <Link to="/" className="btn">
-          <IoIosArrowBack />
+          <IoIosArrowBack onClick={()=>{
+            navigate("/");
+          }}/>
         </Link>
         <button className="btn lg primary" onClick={handleform}>
           Save

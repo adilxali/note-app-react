@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCreateDate from "../components/useCreateDate"
 import { v4 as uuidv4 } from "uuid";
 function CreateNote({setNotes}) {
@@ -25,6 +25,9 @@ function CreateNote({setNotes}) {
     setDetails("");
 
   };
+  useEffect(()=>{
+    document.title = "Create New Note"
+  },[]);
   return (
     <section>
       <header className="create-note__header">

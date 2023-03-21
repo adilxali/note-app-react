@@ -15,7 +15,9 @@ function Note({ notes }) {
     );
     setFilteredNotes(newNotes);
   };
-  useEffect(handleSearch,[text])
+  useEffect(handleSearch,
+    document.title = `React Note App`
+    ,[text])
   return (
     <section>
       <header className="notes__header">
