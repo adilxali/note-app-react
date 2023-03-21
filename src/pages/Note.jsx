@@ -38,7 +38,7 @@ function Note({ notes }) {
 
   const handleSearch = () => {
     const newNotes = notes.filter((note) =>
-      note.title.toLowerCase().includes(text.toLowerCase())
+      note.title.toLowerCase().match(text.toLowerCase())
     );
     setFilteredNotes(newNotes);
   };
@@ -59,15 +59,23 @@ function Note({ notes }) {
             }}
           />
         )}
-        <button
+        
+          {!showSearch ? 
+          <button
           className="btn"
           onClick={() => {
             setShowSearch((prevState) => !prevState);
             setText("");
           }}
         >
-          {!showSearch ? <CiSearch /> : <GrClose color="white" />}
-        </button>
+          <CiSearch /> </button> :<button
+          className="btn"
+          onClick={() => {
+            setShowSearch((prevState) => !prevState);
+            setFilteredNotes(notes);
+            setText("");
+          }}>  <GrClose color="white" /> </button>}
+        
 
         {!showSearch && (
           <Link to="/create">
