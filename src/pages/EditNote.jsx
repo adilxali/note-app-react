@@ -1,7 +1,7 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCreateDate from "../components/useCreateDate";
 
 function EditNote({ notes, setNotes }) {
@@ -11,6 +11,8 @@ function EditNote({ notes, setNotes }) {
   const [details, setDetails] = useState(note.details);
   const date = useCreateDate();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const handleform = (e) => {
     e.preventDefault();
     if(title && details){
@@ -28,8 +30,9 @@ function EditNote({ notes, setNotes }) {
     setNotes(newNotes);
     navigate("/");
   };
-
-
+  useEffect(()=>{
+    document.title = `Edit Note - ${title}`
+  },[location.pathname])
   return (
     <section>
       <header className="create-note__header">
